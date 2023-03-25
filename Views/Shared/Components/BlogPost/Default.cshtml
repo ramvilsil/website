@@ -6,11 +6,19 @@
         <div class="text-3xl">@Model.title</div>
     </header>
 
+    @if (Model.textArea1 != null)
+    {
+        <div>@Model.textArea1</div>
+    }
 
-    <div>@Model.textArea1</div>
+    @if (Model.imageSrc != null)
+    {
+        <img class="rounded-tr-3xl" src="@Model.imageSrc" />
+    }
 
-    <img class="rounded-tr-3xl" src="@Model.imageSrc" />
-
-
+    @if (Model.textArea2 != null)
+    {
+        <div>@Model.textArea2</div>
+    }
 
 </div>

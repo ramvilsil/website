@@ -1,0 +1,36 @@
+@model dynamic
+<div class="w-full flex gap-16 portrait:flex-col">
+
+    <div class="w-full flex items-center portrait:justify-center">
+      
+        <div class="w-72 h-72 bg-white rounded-xl border-2 flex justify-center items-center">
+        @if (Model.imageSrc != null)
+        {
+            <img src="@Model.imageSrc" />
+        }
+        else
+        {
+            <div>Coming soon...</div>
+        }
+            </div> 
+    </div>
+
+    <div class="w-full flex flex-col justify-center gap-8">
+
+        @await Component.InvokeAsync("SectionTitle", Model.title)
+
+        @if (Model.textArea != null)
+        {
+            <div>@Model.textArea</div>
+        }
+        @if (Model.liveLink != null)
+        {
+            <a class="self-start text-blue-500 underline underline-offset-2" href="@Model.liveLink">See Live Project</a>
+        }
+        @if (Model.sourceLink != null)
+        {
+            <a class="self-start text-blue-500 underline underline-offset-2" href="@Model.sourceLink">See Source Code</a>
+        }
+    </div>
+
+</div>

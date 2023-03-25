@@ -5,7 +5,7 @@ namespace Application.ViewComponents
 {
     public class BlogPost : ViewComponent
     {
-        public IViewComponentResult Invoke(string topic, string title, string imageSrc, string textArea1, string textArea2)
+        public IViewComponentResult Invoke(string topic, string title, string? imageSrc, string? textArea1, string? textArea2)
         {
             return View("Default", new
             {

@@ -3,17 +3,26 @@
 }
 
 
-<div class="w-full flex">
+<div class="flex flex-col justify-center items-center gap-16">
 
-    <div class="w-max flex flex-col gap-4">
-        @await Component.InvokeAsync("SectionTitle", "E-commerce Web App")
+    @await Component.InvokeAsync("ProjectDisplay",
+    new {
+    title = 
+    "E-commerce Web App", 
+    imageSrc =
+    "/images/rufolt-logo.png",
+    textArea = 
+    "Custom-built e-commerce web app with features such as product search, shopping cart, and secure checkout, developed from scratch using modern web technologies.",
+    liveLink = 
+    "https://rufolt.com"
+    })
 
-        <div class="w-72 h-72 bg-black rounded-xl"> </div>
-
-    </div>
-
-    <div class="w-full flex justify-center">
-        <div>Programmed with C#</div>
-    </div>
+    @await Component.InvokeAsync("ProjectDisplay",
+    new {
+    title = 
+    "ChatGPT Formal Translator Mobile App",
+    sourceLink = 
+    "https://github.com/ramvilsil/react-native-chatgpt",
+    })
 
 </div>
