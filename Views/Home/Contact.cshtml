@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Contact";
+}
+
+@await Component.InvokeAsync("SectionTitle", "Send me a message")
+
+<form class="mt-5 w-full flex flex-col items-center gap-4">
+
+    <div class="portrait:hidden w-full flex gap-4">
+        <div class="w-full flex flex-col gap-2">
+            <label class="font-semibold text-stone-700">Name</label>
+            <input class="p-4 rounded-xl border-2 focus:outline-none" />
+        </div>
+        <div class="w-full flex flex-col gap-2">
+            <label class="font-semibold text-stone-700">Email</label>
+            <input class="p-4 rounded-xl border-2 focus:outline-none" />
+        </div>
+    </div>
+
+    <div class="landscape:hidden w-full flex flex-col gap-2">
+        <label class="font-semibold text-stone-700">Name</label>
+        <input class="p-4 rounded-xl border-2 focus:outline-none" />
+    </div>
+    <div class="landscape:hidden w-full flex flex-col gap-2">
+        <label class="font-semibold text-stone-700">Email</label>
+        <input class="p-4 rounded-xl border-2 focus:outline-none" />
+    </div>
+
+    <div class="w-full flex flex-col gap-2">
+        <label class="font-semibold text-stone-700">Message subject</label>
+        <input class="p-4 rounded-xl border-2 focus:outline-none" />
+    </div>
+
+    <div class="w-full flex flex-col gap-2">
+        <label class="font-semibold text-stone-700">Message</label>
+        <textarea class="p-4 rounded-xl border-2 resize-none focus:outline-none"></textarea>
+    </div>
+
+
+    <input class="bg-blue-700 text-white font-semibold w-full p-4 rounded-xl hover:cursor-pointer" type="submit"
+        value="Send message" />
+</form>
