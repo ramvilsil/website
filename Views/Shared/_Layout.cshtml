@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" class="overflow-y-scroll">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -14,26 +14,16 @@
         <title>Ramon's Portfolio</title>
     }
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    @* <script src="https://cdn.tailwindcss.com"></script> *@
 
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/site.css?v=1.0.0" rel="stylesheet">
+    <link href="~/css/custom.css?v=1.0.0" rel="stylesheet">
 
-    <style>
-        ::-webkit-scrollbar {
-            display: none;
-        }
-
-        html,
-        body {
-            width: 100vw;
-            overflow-x: hidden;
-        }
-    </style>
 </head>
 
-<body>
-    <nav style="border-width: 1px"
-        class="portrait:hidden w-11/12 ml-auto mr-auto mb-20 m-4 p-2 pl-8 pr-8 flex items-center justify-between bg-white rounded-full text-lg border-black shadow-md">
+<body class="flex flex-col items-center">
+    <nav
+        class="portrait:hidden w-11/12 fixed m-4 p-2 pl-8 pr-8 flex items-center justify-between bg-white rounded-full text-lg border-black shadow-md">
 
         <div class="flex items-center gap-16">
 
@@ -41,9 +31,9 @@
                 <div class="w-maxrounded-full">
                     <img class="w-10 rounded-full" src="~/images/logo.png" />
                 </div>
-                <div class="flex flex-col font-bold whitespace-nowrap">
-                    <div class="text-sm">Ramon's Portfolio</div>
-                    <div class="text-xl">rxvs.dev</div>
+                <div class="flex flex-col whitespace-nowrap">
+                    <div class="text-xs font-bold">Ramon's Portfolio</div>
+                    <div class="text-xl font-medium">rxvs.dev</div>
                 </div>
             </a>
 
@@ -80,8 +70,8 @@
 
     </nav>
 
-    <nav style="border-width: 1px"
-        class="landscape:hidden w-11/12 flex justify-between items-center rounded-full border-black p-4 pl-8 pr-8 ml-auto mr-auto m-4 mb-10 shadow-md">
+    <nav
+        class="landscape:hidden w-11/12 fixed flex justify-between items-center rounded-full bg-white border-black p-4 pl-8 pr-8 m-4 shadow-md">
 
         <a asp-controller="Home" asp-action="Index">
             <img class="w-8 h-8" src="~/images/logo.png" />
@@ -93,19 +83,18 @@
                     d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
             </svg>
         </div>
-
     </nav>
 
     <nav id="sidebar"
-        class="landscape:hidden hidden w-3/4 z-50 rounded-3xl fixed top-0 left-0 h-full bg-white flex-col">
+        class="landscape:hidden hidden w-3/4 z-50 rounded-3xl fixed top-0 left-0 h-full bg-white border-0 flex-col">
 
         <div class="self-center mt-10 mb-10 w-3/4 h-full flex flex-col items-center justify-between gap-16">
 
-            <a class="w-full flex gap-3 font-bold" asp-action="Index" asp-controller="Home">
+            <a class="w-full flex gap-3" asp-action="Index" asp-controller="Home">
                 <img class="w-16 h-16" src="~/images/logo.png" />
                 <div class="flex flex-col">
-                    <div>Ramon's Portfolio</div>
-                    <div class="text-3xl">rxvs.dev</div>
+                    <div class="font-bold">Ramon's Portfolio</div>
+                    <div class="text-3xl font-medium">rxvs.dev</div>
                 </div>
             </a>
 
@@ -152,35 +141,34 @@
                     </svg>
                 </a>
             </div>
-
         </div>
-
     </nav>
 
-    @* Background Shadow *@
     <div id="backgroundShadow" onclick="toggleSidebar()"
         class="fixed top-0 hidden h-screen w-screen bg-black opacity-30"></div>
 
-
-    <main role="main" class="w-7/12 portrait:w-11/12 ml-auto mr-auto flex flex-col">
+    <main role="main" class="w-7/12 portrait:w-11/12 mt-36 ml-auto mr-auto flex flex-col">
         @RenderBody()
     </main>
-
 
     <footer
         class="w-11/12 mt-40 ml-auto mr-auto m-4 rounded-3xl bg-blue-600 text-white p-8 flex flex-col justify-center items-center">
 
-        <div class="flex flex-col justify-center items-center gap-2">
-            <div class="font-semibold text-2xl">Need help on your project?</div>
-            <div class="font-medium text-xl">Let's collab</div>
+        <div class="flex flex-col justify-center items-center gap-6 p-4">
+            <div class="flex flex-col items-center text-center gap-2">
+                <div class="font-semibold text-2xl">Need help on your project?</div>
+                <div class="font-medium text-xl">Let's collab.</div>
+            </div>
 
-            <div class="flex gap-4">
+            <div class="flex gap-6">
                 <a asp-action="Skills" asp-controller="Home"
-                    class="border-2 border-white rounded-xl pr-4 pl-4 p-2 hover:bg-white hover:text-black">See my
-                    skills</a>
+                    class="border-2 border-white rounded-xl pr-4 pl-4 p-2 hover:bg-white hover:text-black">
+                    See my skills
+                </a>
                 <a asp-action="Contact" asp-controller="Home"
-                    class="border-2 border-white rounded-xl pr-4 pl-4 p-2 hover:bg-white hover:text-black">Contact
-                    me</a>
+                    class="border-2 border-white rounded-xl pr-4 pl-4 p-2 hover:bg-white hover:text-black">
+                    Contact me
+                </a>
             </div>
 
         </div>
@@ -188,10 +176,10 @@
         <hr class="w-11/12 mt-8 mb-8" />
 
         <div
-            class="w-11/12 flex justify-between items-center portrait:flex-col-reverse portrait:items-start portrait:gap-8">
+            class="w-11/12 flex justify-between items-end portrait:flex-col-reverse portrait:items-start portrait:gap-8">
 
             <div class="flex flex-col gap-4">
-                <div class="text-lg font-medium">This website was custom built by Ramon</div>
+                <div class="text-lg font-medium">This web app was custom built by me, Ramon.</div>
                 <div class="flex flex-col gap-1">
                     <div class="font-medium">Technologies used</div>
                     <div>C#</div>
@@ -200,6 +188,14 @@
                     <div>JavaScript, CSS, HTML</div>
                     <div>Azure</div>
                 </div>
+                <a href="https://github.com/ramvilsil/website"
+                    class="self-start text-lg font-medium underline underline-offset-2 flex gap-2 items-center justify-center">
+                    <div>Source Code</div>
+                    <svg fill="white" height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                        <path
+                            d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z" />
+                    </svg>
+                </a>
             </div>
 
             <div class="flex gap-8">
@@ -216,11 +212,8 @@
                     </svg>
                 </a>
             </div>
-
         </div>
-
     </footer>
-
 
     <script defer src="~/js/site.js"></script>
 </body>

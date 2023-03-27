@@ -1,0 +1,13 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+html,
+body {
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+nav {
+    border-width: 1px
+}

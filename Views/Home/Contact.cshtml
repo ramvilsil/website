@@ -5,10 +5,11 @@
 
 @await Component.InvokeAsync("SectionTitle", "Send me a message")
 
-<form asp-action="SendEmail" method="post" class="mt-5 w-full flex flex-col items-center gap-4">
+@* Landscape *@
+<form asp-action="SendEmail" method="post" class="mt-5 w-full flex flex-col items-center gap-4 portrait:hidden">
     @Html.AntiForgeryToken()
 
-    <div class="portrait:hidden w-full flex gap-4">
+    <div class="w-full flex gap-4">
         <div class="w-full flex flex-col gap-2">
             <label class="font-semibold text-stone-700">Name</label>
             <input asp-for="@Model.SenderName" class="p-4 rounded-xl border-2 focus:outline-none" required />
@@ -19,11 +20,30 @@
         </div>
     </div>
 
-    <div class="landscape:hidden w-full flex flex-col gap-2">
+    <div class="w-full flex flex-col gap-2">
+        <label class="font-semibold text-stone-700">Message subject</label>
+        <input asp-for="@Model.MessageSubject" class="p-4 rounded-xl border-2 focus:outline-none" required />
+    </div>
+
+    <div class="w-full flex flex-col gap-2">
+        <label class="font-semibold text-stone-700">Message</label>
+        <textarea asp-for="@Model.MessageBody" class="p-4 rounded-xl border-2 resize-none focus:outline-none"
+            required></textarea>
+    </div>
+
+    <input class="bg-blue-600 text-white font-semibold w-full p-4 rounded-xl hover:cursor-pointer" type="submit"
+        value="Send message" />
+</form>
+
+@* Portrait *@
+<form asp-action="SendEmail" method="post" class="mt-5 w-full flex flex-col items-center gap-4 landscape:hidden">
+    @Html.AntiForgeryToken()
+
+    <div class="w-full flex flex-col gap-2">
         <label class="font-semibold text-stone-700">Name</label>
         <input asp-for="@Model.SenderName" class="p-4 rounded-xl border-2 focus:outline-none" required />
     </div>
-    <div class="landscape:hidden w-full flex flex-col gap-2">
+    <div class="w-full flex flex-col gap-2">
         <label class="font-semibold text-stone-700">Email</label>
         <input asp-for="@Model.SenderEmail" class="p-4 rounded-xl border-2 focus:outline-none" required />
     </div>
