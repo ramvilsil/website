@@ -1,11 +1,39 @@
-﻿@await Component.InvokeAsync("BlogPost",
-new {
-topic =
-"E-commerce",
-title =
-"The World of E-Commerce in 2023",
-imageSrc =
-"https://images.pexels.com/photos/5632397/pexels-photo-5632397.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-textArea1 =
-"My first blog post!"
-})
+﻿@{
+    ViewData["Title"] = "Blog";
+}
+
+<div class="flex flex-col gap-36">
+
+    @await Component.InvokeAsync("BlogPost",
+    new {
+    topic =
+    "Mobile Apps & AI",
+    title =
+    "Creating a Translator Mobile App with ChatGPT API"
+    })
+
+    <hr class="w-full" />
+
+    @await Component.InvokeAsync("BlogPost",
+    new {
+    topic =
+    "E-commerce",
+    title =
+    "Enhancing Your Online Store with WebSockets",
+    imageSrc =
+    "https://images.pexels.com/photos/5632397/pexels-photo-5632397.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    textArea1 =
+    "My first blog post!"
+    })
+
+    <hr class="w-full" />
+
+    @await Component.InvokeAsync("BlogPost",
+    new {
+    topic =
+    "Cryptocurrency",
+    title =
+    "Blockchain Technology: Building a Crypto Mining Rig"
+    })
+
+</div>
