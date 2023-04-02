@@ -1,11 +1,2 @@
-@model dynamic
-@if (Model.emailSent)
-{
-    @await Component.InvokeAsync("SectionTitle", "Message Sent")
-    <div>Your message was successfully sent.</div>
-}
-else
-{
-    @await Component.InvokeAsync("SectionTitle", "Message Failed")
-    <div>Your message could not be sent.</div>
-}
+@await Component.InvokeAsync("SectionTitle", "Message Failed")
+<div>Your message could not be sent.</div>

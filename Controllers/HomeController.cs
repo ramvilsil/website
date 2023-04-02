@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Application.ViewModels;
-using Microsoft.Extensions.Configuration;
 using System.Net;
 using System.Net.Mail;
 using Microsoft.AspNetCore.Antiforgery;
@@ -36,10 +34,8 @@ public class HomeController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Route("/sendEmail")]
-    public IActionResult SendEmail(EmailViewModel? emailViewModel)
+    public IActionResult SendEmail(EmailViewModel emailViewModel)
     {
-        emailViewModel.MessageTimestamp = DateTime.UtcNow;
-
         if (ModelState.IsValid)
         {
             var email = _configuration["EmailSettings:Email"];
@@ -47,25 +43,35 @@ public class HomeController : Controller
             var server = _configuration["EmailSettings:Server"];
             var port = int.Parse(_configuration["EmailSettings:Port"]);
 
+            var clientIpAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
+
             MailMessage message = new MailMessage();
 
             message.From = new MailAddress(email);
             message.To.Add(email);
-            message.Subject = emailViewModel.MessageSubject;
-            message.Body = $"Name: {emailViewModel.SenderName}\nEmail: {emailViewModel.SenderEmail}\nMessage: {emailViewModel.MessageBody}\nMessage Timestamp: {emailViewModel.MessageTimestamp}";
+            message.Subject = $"Ramon's Porfolio - {emailViewModel.MessageSubject}";
+
+            message.Body = $"Name:\n{emailViewModel.SenderName}\n\n" +
+                  $"Email:\n{emailViewModel.SenderEmail}\n\n" +
+                  $"Message:\n{emailViewModel.MessageBody}\n\n" +
+                  $"Message Timestamp:\n{DateTime.UtcNow}\n\n" +
+                  $"IP Address:\n{clientIpAddress}";
 
             SmtpClient smtp = new SmtpClient(server, port);
             smtp.UseDefaultCredentials = false;
-
             smtp.Credentials = new NetworkCredential(email, password);
-
             smtp.EnableSsl = true;
             smtp.Send(message);
-            return View(new { emailSent = true });
+
+            return RedirectToAction("EmailSent");
         }
 
-        return View(new { emailSent = false });
+        return View();
     }
+
+    [HttpGet]
+    [Route("/emailSent")]
+    public IActionResult EmailSent() => View();
 
     [Route("/skills")]
     public IActionResult Skills() => View();
