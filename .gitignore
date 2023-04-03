@@ -7,4 +7,6 @@ bin
 obj
 Properties
 node_modules
+package-lock.json
+package.json
 .env
