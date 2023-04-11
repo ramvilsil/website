@@ -694,12 +694,24 @@ video {
   align-self: center;
 }
 
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
+.whitespace-pre {
+  white-space: pre;
+}
+
 .rounded-3xl {
   border-radius: 1.5rem;
 }
 
 .rounded-full {
   border-radius: 9999px;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .rounded-xl {
@@ -738,6 +750,11 @@ video {
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 
+.bg-stone-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(120 113 108 / var(--tw-bg-opacity));
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -745,6 +762,10 @@ video {
 
 .fill-blue-600 {
   fill: #2563eb;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .p-2 {
@@ -830,6 +851,11 @@ video {
   color: rgb(68 64 60 / var(--tw-text-opacity));
 }
 
+.text-violet-600 {
+  --tw-text-opacity: 1;
+  color: rgb(124 58 237 / var(--tw-text-opacity));
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -841,6 +867,10 @@ video {
 
 .underline-offset-2 {
   text-underline-offset: 2px;
+}
+
+.underline-offset-4 {
+  text-underline-offset: 4px;
 }
 
 .opacity-30 {
@@ -899,6 +929,11 @@ video {
 
   .portrait\:gap-8 {
     gap: 2rem;
+  }
+
+  .portrait\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 

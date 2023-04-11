@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Application.ViewModels;
+﻿using Application.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Antiforgery;
 using System.Net;
 using System.Net.Mail;
-using Microsoft.AspNetCore.Antiforgery;
 
 namespace Application.Controllers;
 
@@ -11,29 +11,39 @@ public class HomeController : Controller
     private readonly IConfiguration _configuration;
     private readonly IAntiforgery _antiforgery;
 
-    public HomeController(IConfiguration configuration, IAntiforgery antiforgery)
+    public HomeController
+    (
+        IConfiguration configuration,
+        IAntiforgery antiforgery
+    )
     {
         _configuration = configuration;
         _antiforgery = antiforgery;
     }
 
+    [HttpGet]
+    [Route("/")]
     public IActionResult Index() => RedirectToAction("Blog");
 
+    [HttpGet]
     [Route("/blog")]
     public IActionResult Blog() => View();
 
+    [HttpGet]
     [Route("/projects")]
     public IActionResult Projects() => View();
 
+    [HttpGet]
     [Route("/about")]
     public IActionResult About() => View();
 
+    [HttpGet]
     [Route("/contact")]
     public IActionResult Contact() => View();
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    [Route("/sendEmail")]
+    [Route("/send-email")]
     public IActionResult SendEmail(EmailViewModel emailViewModel)
     {
         if (ModelState.IsValid)
@@ -70,12 +80,14 @@ public class HomeController : Controller
     }
 
     [HttpGet]
-    [Route("/emailSent")]
+    [Route("/email-sent")]
     public IActionResult EmailSent() => View();
 
+    [HttpGet]
     [Route("/skills")]
     public IActionResult Skills() => View();
 
+    [HttpGet]
     [Route("/error")]
     public IActionResult Error() => View();
 }

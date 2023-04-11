@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Blog";
+    ViewBag.Title = "Blog";
 }
 
 <div class="flex flex-col gap-36">
@@ -9,7 +9,20 @@
     topic =
     "Mobile Apps & AI",
     title =
-    "Creating a Translator Mobile App with ChatGPT API"
+    "A Translator Mobile App, the Power of AI",
+    code = @Html.Raw(@"
+    using System;
+
+    namespace MyNamespace {
+    public class MyClass {
+    public void MyMethod()
+    {
+    Console.WriteLine(""Hello, world!"");
+    }
+    }
+    }
+    ").ToString(),
+    codeLanguage = "C#",
     })
 
     <hr class="w-full" />
@@ -19,11 +32,13 @@
     topic =
     "E-commerce",
     title =
-    "Enhancing Your Online Store with WebSockets",
+    "Enhancing Your Online Store",
     imageSrc =
     "https://images.pexels.com/photos/5632397/pexels-photo-5632397.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     textArea1 =
-    "My first blog post!"
+    "My first blog post!",
+    code = "var x = 5;",
+    codeLanguage = "JavaScript",
     })
 
     <hr class="w-full" />
@@ -31,9 +46,9 @@
     @await Component.InvokeAsync("BlogPost",
     new {
     topic =
-    "Cryptocurrency",
+    "Blockchain & Cryptocurrency",
     title =
-    "Blockchain Technology: Building a Crypto Mining Rig"
+    "Building a Computer for Profit"
     })
 
 </div>
