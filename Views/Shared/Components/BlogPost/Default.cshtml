@@ -1,32 +1,5 @@
-@model dynamic
-<div class="flex flex-col gap-8">
+@model string
 
-    <header class="font-semibold flex flex-col gap-2">
-        <div>@Model.topic</div>
-        <div class="text-3xl">@Model.title</div>
-    </header>
-
-    @if (Model.textArea1 != null)
-    {
-        <div>@Model.textArea1</div>
-    }
-
-    @if (Model.imageSrc != null)
-    {
-        <img class="rounded-tr-3xl" src="@Model.imageSrc" />
-    }
-
-    @if (Model.code != null && Model.codeLanguage != null)
-    {
-        <div class="w-full flex flex-col rounded-lg bg-black portrait:text-sm">
-            <label class="w-full p-1 pl-4 pr-4 bg-stone-500 font-medium text-lg">@Model.codeLanguage</label>
-            <code class="w-full whitespace-pre text-white overflow-x-scroll">@Model.code</code>
-        </div>
-    }
-
-    @if (Model.textArea2 != null)
-    {
-        <div>@Model.textArea2</div>
-    }
-
+<div class="markdown-content">
+    @Html.Raw(Model)
 </div>

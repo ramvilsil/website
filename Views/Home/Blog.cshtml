@@ -2,53 +2,24 @@
     ViewBag.Title = "Blog";
 }
 
-<div class="flex flex-col gap-36">
+<div class="flex flex-col">
 
-    @await Component.InvokeAsync("BlogPost",
-    new {
-    topic =
-    "Mobile Apps & AI",
-    title =
-    "A Translator Mobile App, the Power of AI",
-    code = @Html.Raw(@"
-    using System;
+    @await Component.InvokeAsync("BlogPost", "Content/BlogPosts/online-store-app.md")
 
-    namespace MyNamespace {
-    public class MyClass {
-    public void MyMethod()
-    {
-    Console.WriteLine(""Hello, world!"");
-    }
-    }
-    }
-    ").ToString(),
-    codeLanguage = "C#",
-    })
+    <hr class="mt-10 mb-10" />
 
-    <hr class="w-full" />
+    @await Component.InvokeAsync("BlogPost", "Content/BlogPosts/todo-list-app.md")
 
-    @await Component.InvokeAsync("BlogPost",
-    new {
-    topic =
-    "E-commerce",
-    title =
-    "Enhancing Your Online Store",
-    imageSrc =
-    "https://images.pexels.com/photos/5632397/pexels-photo-5632397.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    textArea1 =
-    "My first blog post!",
-    code = "var x = 5;",
-    codeLanguage = "JavaScript",
-    })
+    <hr class="mt-10 mb-10" />
 
-    <hr class="w-full" />
+    @await Component.InvokeAsync("BlogPost", "Content/BlogPosts/styling-with-scss.md")
 
-    @await Component.InvokeAsync("BlogPost",
-    new {
-    topic =
-    "Blockchain & Cryptocurrency",
-    title =
-    "Building a Computer for Profit"
-    })
+    <hr class="mt-10 mb-10" />
+
+    @await Component.InvokeAsync("BlogPost", "Content/BlogPosts/2-week-sprint.md")
+
+    <hr class="mt-10 mb-10" />
+
+    @await Component.InvokeAsync("BlogPost", "Content/BlogPosts/crypto-mining.md")
 
 </div>

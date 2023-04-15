@@ -8,6 +8,14 @@
 
   <Target Name="Tailwind" BeforeTargets="Build">
     <Exec Command="npm run style:build" />
-  </Target> 
+  </Target>
+
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.31.0" />
+  </ItemGroup> 
 
 </Project>
