@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Application.ViewComponents
 {

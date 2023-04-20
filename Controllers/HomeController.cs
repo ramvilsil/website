@@ -1,8 +1,8 @@
-﻿using Application.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Antiforgery;
 using System.Net;
 using System.Net.Mail;
+using Application.ViewModels;
 
 namespace Application.Controllers;
 

@@ -11,7 +11,16 @@
   </Target>
 
   <ItemGroup>
-    <Folder Include="Content\" />
+    <Folder Include="wwwroot\Content\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Content\BlogPosts\2-week-sprint.md" />
+    <None Include="wwwroot\Content\BlogPosts\crypto-mining.md" />
+    <None Include="wwwroot\Content\BlogPosts\online-store-app.md" />
+    <None Include="wwwroot\Content\BlogPosts\styling-with-scss.md" />
+    <None Include="wwwroot\Content\BlogPosts\todo-list-app.md" />
+    <None Include="wwwroot\Content\Testing.md" />
   </ItemGroup>
 
   <ItemGroup>

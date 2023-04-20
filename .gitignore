@@ -1,3 +1,4 @@
+.config
 appsettings.json
 appsettings.Development.json
 Application.csproj.user

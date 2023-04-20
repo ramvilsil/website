@@ -3,7 +3,7 @@
     ViewBag.Title = "Contact";
 }
 
-@await Component.InvokeAsync("SectionTitle", "Send me a message")
+@await Component.InvokeAsync("SectionTitle", "Send Me A Message")
 
 @* Landscape *@
 <form asp-action="SendEmail" method="post" class="mt-5 w-full flex flex-col items-center gap-4 portrait:hidden">
@@ -21,7 +21,7 @@
     </div>
 
     <div class="w-full flex flex-col gap-2">
-        <label class="font-semibold text-stone-700">Message subject</label>
+        <label class="font-semibold text-stone-700">Message Subject</label>
         <input asp-for="@Model.MessageSubject" class="p-4 rounded-xl border-2 focus:outline-none" required />
     </div>
 
@@ -32,7 +32,7 @@
     </div>
 
     <input class="bg-blue-600 text-white font-semibold w-full p-4 rounded-xl hover:cursor-pointer" type="submit"
-        value="Send message" />
+        value="Send Message" />
 </form>
 
 @* Portrait *@
@@ -49,7 +49,7 @@
     </div>
 
     <div class="w-full flex flex-col gap-2">
-        <label class="font-semibold text-stone-700">Message subject</label>
+        <label class="font-semibold text-stone-700">Message Subject</label>
         <input asp-for="@Model.MessageSubject" class="p-4 rounded-xl border-2 focus:outline-none" required />
     </div>
 
@@ -60,5 +60,5 @@
     </div>
 
     <input class="bg-blue-600 text-white font-semibold w-full p-4 rounded-xl hover:cursor-pointer" type="submit"
-        value="Send message" />
+        value="Send Message" />
 </form>

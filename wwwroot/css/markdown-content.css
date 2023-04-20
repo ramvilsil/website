@@ -75,7 +75,7 @@
 
 .markdown-content pre {
     font-family: monospace;
-    background-color: #1c1917;
+    border: 1px solid #ccc;
     border-radius: 0.5em;
     padding: 1em;
     overflow-x: auto;
@@ -83,7 +83,6 @@
 
 .markdown-content code {
     font-family: Consolas;
-    color: white;
     padding: 0.5em;
 }
 
