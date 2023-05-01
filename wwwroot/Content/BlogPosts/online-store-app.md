@@ -1,1 +1,1 @@
-# Developing an Online Store with ASP.NET Core
+# Developing an Online Store Website, ASP.NET Core

@@ -1,4 +1,4 @@
-# Translator App
+# Translator App, React Native
 
 A language translator app powered by Chat GPT.
 

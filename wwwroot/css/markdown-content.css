@@ -82,7 +82,7 @@
 }
 
 .markdown-content code {
-    font-family: Consolas;
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
     padding: 0.5em;
 }
 

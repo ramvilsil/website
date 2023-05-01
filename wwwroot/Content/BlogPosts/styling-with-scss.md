@@ -1,4 +1,4 @@
-# Styling Web Pages with SCSS
+# Styling Web Pages, SCSS
 
 
 ```scss

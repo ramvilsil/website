@@ -16,62 +16,31 @@
 
     @* <script src="https://cdn.tailwindcss.com"></script> *@
 
-    <link href="~/css/site.css?v=1.0.5" rel="stylesheet">
-    <link href="~/css/custom.css?v=1.0.5" rel="stylesheet">
-    <link href="~/css/markdown-content.css?v=1.0.5" rel="stylesheet" />
+    <link href="~/css/site.css?v=1.0.6" rel="stylesheet">
+    <link href="~/css/custom.css?v=1.0.6" rel="stylesheet">
+    <link href="~/css/markdown-content.css?v=1.0.6" rel="stylesheet" />
 
 </head>
 
 <body class="flex flex-col items-center">
 
     <nav
-        class="portrait:hidden w-11/12 fixed m-4 p-2 pl-8 pr-8 flex items-center justify-between bg-white rounded-full text-lg border-black shadow-md">
-
+        class="portrait:hidden w-11/12 fixed m-4 p-2 pl-8 pr-8 flex items-center justify-center bg-white rounded-full text-lg border-black shadow-md">
         <div class="flex items-center gap-16">
+            @foreach (var menuItem in new[] { ("Blog"), ("Projects"), ("About") })
+            {
+                bool isActiveMenuItem = ViewContext.RouteData.Values["action"].ToString() == menuItem;
 
-            <div class="w-max rounded-full">
-                <a href="https://github.com/ramvilsil">
-                    <img class="w-10 rounded-full ring-blue-400 hover:ring-2 hover:cursor-pointer"
-                        src="https://avatars.githubusercontent.com/ramvilsil" />
-                </a>
-            </div>
-
-            @if (ViewContext.RouteData.Values["action"].ToString() == "Blog")
-            {
-                <a asp-controller="Home" asp-action="Blog" class="font-medium">/blog</a>
-            }
-            else
-            {
-                <a asp-controller="Home" asp-action="Blog" class="font-medium">blog</a>
-            }
-            @if (ViewContext.RouteData.Values["action"].ToString() == "Projects")
-            {
-                <a asp-controller="Home" asp-action="Projects" class="font-medium">/projects</a>
-            }
-            else
-            {
-                <a asp-controller="Home" asp-action="Projects" class="font-medium">projects</a>
-            }
-
-            @if (ViewContext.RouteData.Values["action"].ToString() == "About")
-            {
-                <a asp-controller="Home" asp-action="About" class="font-medium">/about</a>
-            }
-            else
-            {
-                <a asp-controller="Home" asp-action="About" class="font-medium">about</a>
+                <a asp-controller="Home" asp-action="@menuItem"
+                    class='font-bold underline-offset-4 @(isActiveMenuItem ? "opacity-100 underline" : "opacity-60")'>@menuItem</a>
             }
         </div>
     </nav>
 
     <nav
-        class="landscape:hidden w-11/12 fixed flex justify-between items-center rounded-full bg-white border-black p-4 pl-8 pr-8 m-4 shadow-md">
+        class="landscape:hidden w-11/12 fixed flex justify-end items-center rounded-full bg-white border-black p-4 pl-8 pr-8 m-4 shadow-md">
 
-        <div class="w-max rounded-full">
-            <img class="w-10 rounded-full" src="https://avatars.githubusercontent.com/ramvilsil" />
-        </div>
-
-        <div onclick="toggleSidebar()" class="w-max flex items-center justify-center">
+        <div onclick="toggleSidebar()" class="w-max flex">
             <svg height="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path
                     d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
@@ -83,37 +52,16 @@
     <nav id="sidebar"
         class="landscape:hidden hidden w-3/4 z-50 rounded-3xl fixed top-0 left-0 h-full bg-white border-0 flex-col">
 
-        <div class="self-center mt-10 mb-10 w-3/4 h-full flex flex-col items-center justify-between gap-16">
+        <div class="self-center mt-20 mb-20 w-3/4 h-full flex flex-col items-center justify-between gap-16">
 
-            <div class="self-start w-max rounded-full">
-                <img class="w-10 rounded-full" src="https://avatars.githubusercontent.com/ramvilsil" />
-            </div>
+            <div class="w-full h-full flex flex-col text-2xl gap-12">
 
-            <div class="w-full h-full flex flex-col text-3xl gap-12">
+                @foreach (var menuItem in new[] { ("Blog"), ("Projects"), ("About") })
+                {
+                    bool isActiveMenuItem = ViewContext.RouteData.Values["action"].ToString() == menuItem;
 
-                @if (ViewContext.RouteData.Values["action"].ToString() == "Blog")
-                {
-                    <a asp-controller="Home" asp-action="Blog" class="font-medium">/blog</a>
-                }
-                else
-                {
-                    <a asp-controller="Home" asp-action="Blog" class="font-medium">blog</a>
-                }
-                @if (ViewContext.RouteData.Values["action"].ToString() == "Projects")
-                {
-                    <a asp-controller="Home" asp-action="Projects" class="font-medium">/projects</a>
-                }
-                else
-                {
-                    <a asp-controller="Home" asp-action="Projects" class="font-medium">projects</a>
-                }
-                @if (ViewContext.RouteData.Values["action"].ToString() == "About")
-                {
-                    <a asp-controller="Home" asp-action="About" class="font-medium">/about</a>
-                }
-                else
-                {
-                    <a asp-controller="Home" asp-action="About" class="font-medium">about</a>
+                    <a asp-controller="Home" asp-action="@menuItem"
+                        class='font-bold underline-offset-4 @(isActiveMenuItem ? "opacity-100 underline" : "opacity-60")'>@menuItem</a>
                 }
 
             </div>
@@ -151,13 +99,19 @@
                 <div class="text-lg font-bold">This web app was custom built by me, Ramon.</div>
                 <div class="flex flex-col gap-1">
                     <div class="font-bold">Technologies Used</div>
+
                     <a href="https://learn.microsoft.com/en-us/dotnet/csharp/"
-                        class="underline-offset-2 hover:underline">C#</a>
+                        class="w-max underline-offset-2 hover:underline">C#</a>
+
                     <a href="https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0"
-                        class="underline-offset-2 hover:underline">ASP.NET Core (.NET 7)</a>
+                        class="w-max underline-offset-2 hover:underline">ASP.NET Core (.NET 7)</a>
+
                     <a href="https://tailwindcss.com/" class="underline-offset-2 hover:underline">Tailwind CSS</a>
-                    <div class="underline-offset-2 hover:underline">JavaScript, CSS, HTML</div>
-                    <a href="https://azure.microsoft.com/" class="underline-offset-2 hover:underline">Azure</a>
+
+                    <div class="w-max underline-offset-2 hover:underline">JavaScript, CSS, HTML</div>
+
+                    <a href="https://azure.microsoft.com/" class="w-max underline-offset-2 hover:underline">Azure</a>
+
                 </div>
                 <a href="https://github.com/ramvilsil/website"
                     class="self-start text-lg font-bold underline underline-offset-2 flex gap-2 items-center justify-center">
@@ -175,9 +129,9 @@
 
                 <div class="flex flex-col gap-1">
 
-                    <a asp-action="Skills" class="underline-offset-2 hover:underline">My Skills</a>
+                    <a asp-action="Skills" class="w-full underline-offset-2 hover:underline">My Skills</a>
 
-                    <a asp-action="Contact" class="underline-offset-2 hover:underline">Contact Me</a>
+                    <a asp-action="Contact" class="w-full underline-offset-2 hover:underline">Contact Me</a>
 
                 </div>
 

@@ -1,4 +1,4 @@
-# 2-Week Sprint, my collaboration on a CMS
+# My Collaboration on a CMS, 2-Week Sprint
 
 ## Introduction
 I had the opportunity to contribute to building a full-scale MVC Web Application as part of a development team. My part of the project consisted of a blog management system. The sprint included planning, daily standups, sprint retrospectives, and review. I worked on various user stories on both the front and backend.
