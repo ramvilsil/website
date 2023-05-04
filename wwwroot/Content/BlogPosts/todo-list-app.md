@@ -1,1 +1,3 @@
-# Todo List App, C# & TypeScript React
+ # Full-Stack Todo List App From Scratch
+
+ Coming soon...

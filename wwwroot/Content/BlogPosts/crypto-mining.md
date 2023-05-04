@@ -1,1 +1,3 @@
-# Building a Computer for a Profit, Computer Hardware
+# Building a Computer for a Profit
+
+ Coming soon...
