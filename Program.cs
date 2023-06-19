@@ -1,6 +1,12 @@
+using Application.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient();
+
+builder.Services.AddTransient<EmailSender>();
 
 var app = builder.Build();
 

@@ -1,33 +1,61 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Antiforgery;
-using System.Net;
-using System.Net.Mail;
 using Application.ViewModels;
+using Application.Services;
 
 namespace Application.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly IWebHostEnvironment _env;
     private readonly IConfiguration _configuration;
     private readonly IAntiforgery _antiforgery;
+    private readonly HttpClient _httpClient;
+    private readonly EmailSender _emailSender;
 
     public HomeController
     (
+        IWebHostEnvironment env,
         IConfiguration configuration,
-        IAntiforgery antiforgery
+        IAntiforgery antiforgery,
+        HttpClient httpClient,
+        EmailSender emailSender
     )
     {
+        _env = env;
         _configuration = configuration;
         _antiforgery = antiforgery;
+        _httpClient = httpClient;
+        _emailSender = emailSender;
+    }
+
+    private async Task<string> GetClientDetailsAsync()
+    {
+        string? clientIpAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
+
+        if (string.IsNullOrWhiteSpace(clientIpAddress)) return "Client Details Unavailable.";
+
+        return await _httpClient.GetStringAsync($"http://ip-api.com/json/{clientIpAddress}");
     }
 
     [HttpGet]
     [Route("/")]
-    public IActionResult Index() => RedirectToAction("Blog");
+    public IActionResult Index() => RedirectToAction(nameof(Blog));
 
     [HttpGet]
     [Route("/blog")]
-    public IActionResult Blog() => View();
+    public async Task<IActionResult> Blog()
+    {
+        //try
+        //{
+        //    await _emailSender.SendAsync(await GetClientDetailsAsync(), "Website View");
+        //}
+        //catch (Exception ex)
+        //{
+        //    Console.WriteLine($"Exception: {ex}");
+        //}
+        return View();
+    }
 
     [HttpGet]
     [Route("/projects")]
@@ -44,39 +72,26 @@ public class HomeController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Route("/send-email")]
-    public IActionResult SendEmail(EmailViewModel emailViewModel)
+    public async Task<IActionResult> SendEmail(EmailViewModel emailViewModel)
     {
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid) return View();
+
+        try
         {
-            var email = _configuration["EmailSettings:Email"];
-            var password = _configuration["EmailSettings:Password"];
-            var server = _configuration["EmailSettings:Server"];
-            var port = int.Parse(_configuration["EmailSettings:Port"]);
+            string messageBody = $"Name:\n{emailViewModel.SenderName}\n\n" +
+              $"Email:\n{emailViewModel.SenderEmail}\n\n" +
+              $"Message:\n{emailViewModel.MessageBody}\n\n" +
+              $"Message Timestamp:\n{DateTime.UtcNow}\n\n" +
+              $"Client Details:\n{await GetClientDetailsAsync()}";
 
-            var clientIpAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
-
-            MailMessage message = new MailMessage();
-
-            message.From = new MailAddress(email);
-            message.To.Add(email);
-            message.Subject = $"Ramon's Porfolio - {emailViewModel.MessageSubject}";
-
-            message.Body = $"Name:\n{emailViewModel.SenderName}\n\n" +
-                  $"Email:\n{emailViewModel.SenderEmail}\n\n" +
-                  $"Message:\n{emailViewModel.MessageBody}\n\n" +
-                  $"Message Timestamp:\n{DateTime.UtcNow}\n\n" +
-                  $"IP Address:\n{clientIpAddress}";
-
-            SmtpClient smtp = new SmtpClient(server, port);
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential(email, password);
-            smtp.EnableSsl = true;
-            smtp.Send(message);
-
+            await _emailSender.SendAsync(messageBody, emailViewModel.MessageSubject);
             return RedirectToAction("EmailSent");
         }
-
-        return View();
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception: {ex}");
+            return View();
+        }
     }
 
     [HttpGet]
