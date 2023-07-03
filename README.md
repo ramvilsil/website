@@ -1,17 +1,10 @@
-# Ramon's Portfolio Website
+[rxvs.dev]()
 
-Welcome to my personal portfolio website, a showcase of my programming skills, projects, and blog posts.
+## About
+My personal dev portfolio website, a showcase of my work.
 
-## Technologies Used
-
-This web app is built using the following technologies:
-
-- C#
-- ASP.NET Core 7.0
-- Tailwind CSS
-- JavaScript, CSS, HTML
-- Microsoft Azure
-
-## Get in Touch
-
-If you have any questions or would like to discuss a potential project, please feel free to reach out.
+**Built with**
+- **C# ASP.NET Core 7.0**
+- **Tailwind CSS**
+- **JavaScript, CSS, HTML**
+- **Azure**
